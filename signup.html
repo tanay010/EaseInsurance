@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .message {
+            text-align: center;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form id="signupForm" onsubmit="handleSignUp(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Create Account</button>
+        </form>
+        <div class="login-link">
+            <p>Already have an account? <a href="userlogin.html">Login here</a></p>
+        </div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        function handleSignUp(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Store account details in local storage
+            localStorage.setItem('userAccount', JSON.stringify({ username, password }));
+
+            // Display success message
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerText = 'Account has been created successfully! Redirecting to login...';
+
+            // Redirect to login page after a brief delay
+            setTimeout(() => {
+                window.location.href = 'userlogin.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

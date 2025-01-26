@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin Login</title>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <label for="adminId">Admin ID:</label>
+        <input type="text" id="adminId" name="adminId" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        function handleAdminLogin(event) {
+            event.preventDefault();
+
+            const adminId = document.getElementById('adminId').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate admin login
+            fetch('/admin-login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    adminId: adminId,
+                    password: password
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'admininterface.html'; // Redirect to admin interface
+                } else {
+                    return response.text();
+                }
+            })
+            .then(data => {
+                if (data) {
+                    alert(data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

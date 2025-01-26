@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .user-info p {
+            font-size: 18px;
+            color: #555;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .sign-in {
+            margin-bottom: 20px;
+        }
+        .sign-in h2 {
+            margin: 0 0 10px;
+        }
+        .sign-in input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .sign-in button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .sign-in button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="userinterface.html">Home</a>
+            <a href="userdetails.html">Fill Details</a>
+            <a href="user-info.html">User Info</a>
+        </nav>
+        <div class="sign-in">
+            <h2>Sign In</h2>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <h1>Your Information</h1>
+        <div class="user-info" id="userInfo"></div>
+    </div>
+
+    <script>
+        // Retrieve user details from local storage
+        const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+        const userInfoDiv = document.getElementById('userInfo');
+
+        if (userDetails) {
+            userInfoDiv.innerHTML = `
+                <p><strong>Name:</strong> ${userDetails.name}</p>
+                <p><strong>Age:</strong> ${userDetails.age}</p>
+                <p><strong>Gender:</strong> ${userDetails.gender}</p>
+            `;
+        } else {
+            userInfoDiv.innerHTML = '<p>No user details found.</p>';
+        }
+    </script>
+</body>
+</html>

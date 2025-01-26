@@ -1,0 +1,49 @@
+html, body {
+    height: 100%; /* Ensure full height */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body.bg-login {
+    background-image: url('../img/login_pg2.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+}
+
+body.bg-signup {
+    background-image: url('../img/login_page_img.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 200px;
+    background-color: #003366; /* Darker blue */
+    color: white; /* Set text color to white */
+    padding: 15px;
+    position: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items */
+}
+
+.sidebar nav ul {
+    list-style-type: none; /* Remove bullets from list */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.sidebar nav ul li a {
+    color: white; /* Ensure link color is white */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Other existing styles remain unchanged */

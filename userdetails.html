@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fill Your Details</h1>
+        <form id="detailsForm" onsubmit="handleSubmit(event)">
+            <p><strong>User ID:</strong> <span id="userIdDisplay"></span></p>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Fetch User ID from localStorage and display it
+        const userId = localStorage.getItem('userId');
+        document.getElementById('userIdDisplay').textContent = userId;
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+
+            // Store user details in local storage
+            const userDetails = { name, age, gender };
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
+            // Redirect to user info page to display details
+            window.location.href = 'user-info.html';
+        }
+    </script>
+</body>
+</html>

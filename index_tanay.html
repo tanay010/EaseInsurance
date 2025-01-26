@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Premium Calculator</title>
+</head>
+<body>
+    <h1>Insurance Premium Calculator</h1>
+    <form id="premiumForm" method="POST">
+        Age: <input type="number" name="age" required><br>
+        Health Habits: <select name="health_habits" required>
+            <option value="Non-smoker">Non-smoker</option>
+            <option value="Occasional Smoker">Occasional Smoker</option>
+            <option value="Regular Smoker">Regular Smoker</option>
+            <option value="Active Lifestyle">Active Lifestyle</option>
+            <option value="Sedentary Lifestyle">Sedentary Lifestyle</option>
+        </select><br>
+        Driving Record (0: No accidents, 1: Few accidents, 2: Many accidents): <input type="number" name="driving_record" required><br>
+        Location: <select name="location" required>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+        </select><br>
+        Vehicle Type: <select name="vehicle_type" required>
+            <option value="Sedan">Sedan</option>
+            <option value="SUV">SUV</option>
+            <option value="Truck">Truck</option>
+            <option value="Coupe">Coupe</option>
+        </select><br>
+        Occupation: <select name="occupation" required>
+            <option value="Office Job">Office Job</option>
+            <option value="Construction">Construction</option>
+            <option value="Driver">Driver</option>
+            <option value="Healthcare">Healthcare</option>
+        </select><br>
+        Previous Claims (0: No claims, 1: 1 claim, 2: multiple claims): <input type="number" name="previous_claims" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+    
+    <div class="sidebar">
+        <nav>
+            <ul>
+                <li><img src="path/to/profile-pic.jpg" alt="Profile" style="width: 10px; height: auto;"></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="index_tanay.html">Premium Calculator</a></li>
+                <li><a href="claim-process.html">Claim</a></li>
+                <li><a href="question.html">Question</a></li>
+                <li><a href="../Downloads/index_ishaa.html">Admin Dashboard</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h2>Insurance Premium Result</h2>
+        <p>Your estimated premium is: $<span id="premium"></span></p>
+        <p>Your risk score is: <span id="risk_score"></span></p>
+        <a href="/">Go back</a>
+    </div>
+
+    <script>
+        document.getElementById('premiumForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            try {
+                const response = await fetch('/calculate', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.json();
+                document.getElementById('premium').innerText = result.premium;
+                document.getElementById('risk_score').innerText = result.risk_score;
+                document.getElementById('result').style.display = 'block';
+            } catch (error) {
+                console.error('Error submitting claim:', error);
+                alert('Error submitting claim: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
